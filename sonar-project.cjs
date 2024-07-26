@@ -9,7 +9,8 @@ scanner(
       'sonar.projectVersion': '1.0',
       'sonar.language': 'js',
       'sonar.sourceEncoding': 'UTF-8',
-      'sonar.sources': '.'
+      'sonar.sources': '.',
+      'sonar.exclusions': 'sonar-project.cjs'
     }
   },
   (error) => {
