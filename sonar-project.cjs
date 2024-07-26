@@ -3,7 +3,7 @@ const scanner = require('sonarqube-scanner').default
 scanner(
   {
     serverUrl: 'http://localhost:9000',
-    token: 'sqp_87cdcc922e18bff11660850a1b0240be34fbf46e',
+    token: process.env.SONARQUBE_TOKEN,
     options: {
       'sonar.projectKey': 'G00dBunny-Portfolio',
       'sonar.projectVersion': '1.0',

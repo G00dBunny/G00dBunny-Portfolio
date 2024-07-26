@@ -11,8 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
-sonar-project.cjs
 .sonar
+.zshrc
 
 # Editor directories and files
 .vscode/*
