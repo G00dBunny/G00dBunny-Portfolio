@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "publishConfig": {
-    "registry": "http://localhost:8081/repository/nodejs-repo/ "
+    "registry": "http://localhost:8081/repository/nodejs-repo/"
   },
   "scripts": {
     "dev": "vite",
