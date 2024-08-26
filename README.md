@@ -3,8 +3,6 @@ Using Three.js BoilerPlate
 
 ![Screenshot of main page](public/main-page.svg)
 
-## How to use
-Modify the `Room.js` file
 
 ## Setup
 Download [Node.js](https://nodejs.org/en/download/).
