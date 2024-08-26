@@ -1,7 +1,7 @@
 echo 'The following "npm" command runs your Node.js app'
 
 set -x
-nohup npm run dev > output.log 2>&1 &
+npm run dev &
 sleep 1
 echo $! > .pidfile
 set +x
