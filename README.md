@@ -1,5 +1,5 @@
-# G00dBunny-Boilerplate
-Three.js BoilerPlate
+# G00dBunny-Portfolio
+Using Three.js BoilerPlate
 
 ![Screenshot of main page](public/main-page.svg)
 
