@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import Experience from '../Experience'
 import Room from './Room'
 import { EventEmitter } from 'events'
+import Environment from './Environment'
 
 export default class World extends EventEmitter {
   constructor() {
@@ -14,13 +15,8 @@ export default class World extends EventEmitter {
     this.ressources = this.experience.ressources
 
     this.ressources.on('ready', () => {
-      // this.environment = new Environment();
-      // this.floor = new Floor();
+      this.environment = new Environment()
       this.room = new Room()
-      // this.controls = new Controls();
-
-      console.log('worldReady')
-      this.emit('worldready')
     })
   }
 

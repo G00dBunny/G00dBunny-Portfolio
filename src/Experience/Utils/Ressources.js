@@ -32,14 +32,13 @@ export default class Ressources extends EventEmitter {
           asset.path,
           (file) => {
             this.singleAssetLoaded(asset, file)
+          },
+          (xhr) => {
+            console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+          },
+          (error) => {
+            console.log('An error happened', error)
           }
-          //   },
-          //   (xhr) => {
-          //     console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
-          //   },
-          //   (error) => {
-          //     console.log('An error happened', error)
-          //   }
         )
       }
     }
