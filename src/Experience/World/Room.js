@@ -20,7 +20,16 @@ export default class Room {
   }
 
   setModel() {
+    this.actualRoom.children.forEach((child) => {
+      if (child instanceof THREE.Group) {
+        child.children.forEach((item) => {
+          item.castShadow = true
+          item.receiveShadow = true
+        })
+      }
+    })
     this.scene.add(this.actualRoom)
+    this.actualRoom.scale.set(0.11, 0.11, 0.11)
   }
 
   resize() {}

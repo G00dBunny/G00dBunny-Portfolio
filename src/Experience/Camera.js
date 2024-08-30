@@ -30,6 +30,15 @@ export default class Camera {
       50
     )
 
+    const axesHelper = new THREE.AxesHelper(10)
+    this.scene.add(axesHelper)
+
+    const size = 10
+    const divisions = 10
+
+    const gridHelper = new THREE.GridHelper(size, divisions)
+    this.scene.add(gridHelper)
+
     // this.orthographicCamera.position.y = 5.65
     // this.orthographicCamera.position.z = 10
     // this.orthographicCamera.rotation.x = -Math.PI / 6
