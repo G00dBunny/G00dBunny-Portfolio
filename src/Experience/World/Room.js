@@ -4,6 +4,7 @@
 
 import * as THREE from 'three'
 import Experience from '../Experience'
+import GSAP from 'gsap'
 
 export default class Room {
   constructor() {
@@ -14,10 +15,22 @@ export default class Room {
     this.room = this.ressources.items.room
     this.actualRoom = this.room.scene
 
-    console.log(this.room)
+    this.lerp = {
+      current: 0,
+      target: 0,
+      ease: 0.1
+    }
 
     this.setModel()
     this.setAnimation()
+    this.onMouseMove()
+  }
+
+  onMouseMove() {
+    window.addEventListener('mousemove', (e) => {
+      this.rotation = ((e.clientX - window.innerWidth / 2) * 2) / window.innerWidth
+      this.lerp.target = this.rotation * 0.1
+    })
   }
 
   setModel() {
@@ -26,12 +39,18 @@ export default class Room {
         child.children.forEach((item) => {
           if (item.name === 'Cube136') {
             this.material = new THREE.MeshPhysicalMaterial({
-              color: 0x549dd2,
-              transmission: 1,
-              opacity: 10,
-              roughness: 0,
-              ior: 3
+              color: 0x549dd2, // Base color of the glass, often kept subtle
+              transmission: 1, // Full transparency
+              opacity: 0.1, // Opacity set low, but not zero
+              roughness: 0, // Smooth surface
+              metalness: 0, // Non-metallic
+              ior: 1.45, // Index of refraction for glass
+              thickness: 0.1, // Simulates glass thickness
+              clearcoat: 1, // Adds a glossy layer
+              clearcoatRoughness: 0
             })
+            this.material.depthWrite = false
+            this.material.depthTest = false
 
             item.material = this.material
           }
@@ -73,6 +92,10 @@ export default class Room {
   resize() {}
 
   update() {
+    this.lerp.current = GSAP.utils.interpolate(this.lerp.current, this.lerp.target, this.lerp.ease)
+
+    this.actualRoom.rotation.y = this.lerp.current
+
     this.mixer.update(this.time.delta * 0.001)
   }
 }

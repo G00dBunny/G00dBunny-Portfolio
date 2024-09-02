@@ -4,6 +4,7 @@ import Room from './Room'
 import { EventEmitter } from 'events'
 import Environment from './Environment'
 import Controls from './Controls'
+import Floor from './Floor'
 
 export default class World extends EventEmitter {
   constructor() {
@@ -18,6 +19,7 @@ export default class World extends EventEmitter {
     this.ressources.on('ready', () => {
       this.environment = new Environment()
       this.room = new Room()
+      this.floor = new Floor()
       this.controls = new Controls()
     })
   }
