@@ -91,6 +91,11 @@ html, body
   transition: all 0.2s ease-in-out;
 }
 
+.toggle-button:hover .toggle-circle{
+  transform: scale(0.8);
+}
+
+
 /* Section Formatting*/
 
 .section-margin {
