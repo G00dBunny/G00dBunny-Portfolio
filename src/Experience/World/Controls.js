@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import Experience from '../Experience'
 import GSAP from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
 
 export default class Controls {
   constructor() {
@@ -8,9 +9,14 @@ export default class Controls {
     this.scene = this.experience.scene
     this.ressources = this.experience.ressources
     this.time = this.experience.time
+    this.sizes = this.experience.sizes
     this.camera = this.experience.camera
+    this.room = this.experience.world.room.actualRoom
+    GSAP.registerPlugin(ScrollTrigger)
 
-    this.progress = 0
+    this.setPath()
+
+    // this.progress = 0
 
     // this.lerp = {
     //   current: 0,
@@ -21,6 +27,23 @@ export default class Controls {
 
     // this.setPath()
     // this.onWheel()
+  }
+
+  setPath() {
+    this.timeline = new GSAP.timeline()
+    this.timeline.to(this.room.position, {
+      x: () => {
+        return this.sizes.width * 0.0012
+      },
+      scrollTrigger: {
+        trigger: '.first-move',
+        markers: true,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.6,
+        invalidateOnRefresh: true
+      }
+    })
   }
 
   //   onWheel() {

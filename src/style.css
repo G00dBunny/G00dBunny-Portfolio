@@ -135,6 +135,14 @@ html, body
   background-color: var(--primary-pink);
 }
 
+.section-number{
+  position: absolute;
+  bottom: 15px;
+  right: 0;
+  color: var(--primary-pink);
+  font-size: 24px;
+}
+
 /* Hero Section*/
 
 .hero{
