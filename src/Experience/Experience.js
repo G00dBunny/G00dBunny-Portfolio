@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import Sizes from './Utils/Sizes.js'
 import Camera from './Camera.js'
+import Theme from './Theme.js'
 import Renderer from './Renderer.js'
 import Time from './Utils/Time.js'
 import World from './World/World.js'
@@ -22,6 +23,7 @@ export default class Experience {
     this.ressources = new Ressources(assets)
     this.scene = new THREE.Scene()
     this.camera = new Camera()
+    this.theme = new Theme()
     this.world = new World()
     this.renderer = new Renderer()
 

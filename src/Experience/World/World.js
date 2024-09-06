@@ -15,6 +15,7 @@ export default class World extends EventEmitter {
     this.canvas = this.experience.canvas
     this.camera = this.experience.camera
     this.ressources = this.experience.ressources
+    this.theme = this.experience.theme
 
     this.ressources.on('ready', () => {
       this.environment = new Environment()
@@ -22,6 +23,16 @@ export default class World extends EventEmitter {
       this.floor = new Floor()
       this.controls = new Controls()
     })
+
+    this.theme.on('switch', (theme) => {
+      this.switchTheme(theme)
+    })
+  }
+
+  switchTheme(theme) {
+    if (this.environment) {
+      this.environment.switchTheme(theme)
+    }
   }
 
   resize() {}
