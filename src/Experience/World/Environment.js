@@ -35,14 +35,20 @@ export default class Environment {
   switchTheme(theme) {
     if (theme === 'dark') {
       GSAP.to(this.sunLight.color, {
-        r: 0,
-        g: 0,
-        b: 0
+        r: 0.17254,
+        g: 0.23137,
+        b: 0.68627
       })
       GSAP.to(this.ambientLight.color, {
-        r: 0,
-        g: 0,
-        b: 0
+        r: 0.17254,
+        g: 0.23137,
+        b: 0.68627
+      })
+      GSAP.to(this.sunLight, {
+        intensity: 0.78
+      })
+      GSAP.to(this.ambientLight, {
+        intensity: 0.78
       })
     } else {
       GSAP.to(this.sunLight.color, {
@@ -54,6 +60,12 @@ export default class Environment {
         r: 1,
         g: 1,
         b: 1
+      })
+      GSAP.to(this.sunLight, {
+        intensity: 3
+      })
+      GSAP.to(this.ambientLight, {
+        intensity: 1
       })
     }
   }
