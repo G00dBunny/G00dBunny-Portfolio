@@ -15,9 +15,32 @@ html, body
 } 
 
 :root{
-  --text-black : #333332;
-  --primary-color : #FAF4E5;
-  --primary-pink : #e5a1aa;
+  /*Light theme*/
+  --color-text-light : #333332;
+  --color-background-light : #FAF4E5;
+  --color-pink-light : #e5a1aa;
+  --color-green-light : #7AD0AC;
+  --color-blue-light : #8395CD;
+
+  /*Dark theme*/
+  --color-text-dark : #FAF4E5;
+  --color-background-dark : #8395cd;  
+}
+
+.light-theme{
+  --color-text : var(--color-text-light);
+  --color-background : var(--color-background-light);
+  --color-pink :var(--color-pink-light);
+  --color-green :var(--color-green-light);
+  --color-blue :var(--color-blue-light);
+
+}
+.dark-theme{
+  --color-text : var(--color-text-dark);
+  --color-background : var(--color-background-dark);
+  --color-pink :var(--color-text-dark);
+  --color-green :var(--color-text-dark);
+  --color-blue :var(--color-text-dark);
 }
 
 .experience{
@@ -74,7 +97,7 @@ html, body
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--primary-pink);
+  background-color: var(--color-pink);
   border-radius: 999px;
   margin: 0px 16px;
   border: none;
@@ -87,7 +110,7 @@ html, body
   border-radius: 50%;
   width: 20px;
   height: 20px;
-  background-color: var(--primary-color);
+  background-color: var(--color-background);
   transition: all 0.2s ease-in-out;
 }
 
@@ -112,7 +135,7 @@ html, body
   width: 50%;
   padding: 1000px 4%;
   margin: 0;
-  background-color: var(--primary-color);
+  background-color: var(--color-background);
 }
 
 .left{
@@ -125,7 +148,7 @@ html, body
 .section-intro-wrapper {
   position : relative;
   padding: 20% 5%;
-  border-bottom: 2px solid var(--primary-pink);
+  border-bottom: 2px solid var(--color-pink);
   padding-bottom: 400px;
 }
 
@@ -150,7 +173,7 @@ html, body
 /* Decoration Part*/
 .section-title{
   position : relative;
-  color: var(--primary-pink);
+  color: var(--color-pink);
 }
 
 .section-title-text{
@@ -171,7 +194,7 @@ html, body
   width: 100%;
   max-width: 278px;
   height: 60px;
-  border : 1px solid var(--primary-pink);
+  border : 1px solid var(--color-pink);
   transform-origin: left;
   transform: skewY(-25deg);
 }
@@ -187,14 +210,14 @@ html, body
 .styleThree{
   top: 80px;
   transform: skewY(25deg);
-  background-color: var(--primary-pink);
+  background-color: var(--color-pink);
 }
 
 .section-number{
   position: absolute;
   bottom: 15px;
   right: 0;
-  color: var(--primary-pink);
+  color: var(--color-pink);
   font-size: 24px;
 }
 
