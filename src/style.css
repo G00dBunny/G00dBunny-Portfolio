@@ -87,6 +87,7 @@ html, body
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  color : var(--color-text);
 }
 
 .toggle-button{
@@ -162,18 +163,24 @@ html, body
   font-weight: 700;
   line-height: 1,8;
   margin-top: 64px;
+  color : var(--color-text);
+
 }
 
 .section-text{
   line-height: 2;
   margin-top: 18px;
   font-size: 16px;
+  color : var(--color-text);
+
 }
 
 /* Decoration Part*/
 .section-title{
   position : relative;
   color: var(--color-pink);
+  color : var(--color-text);
+
 }
 
 .section-title-text{
@@ -184,6 +191,8 @@ html, body
   transform: skewY(25deg);
   z-index: 5;
   text-transform: uppercase;
+  color : var(--color-text);
+
 } 
 
 .styleOne,
@@ -241,23 +250,29 @@ html, body
   position: absolute;
   bottom: 168px;
   left: 0;
+  color : var(--color-text);
+
 } 
 
 .hero-second {
   position : absolute;
   top: calc(50% - 120px);
-  right : 0
+  right : 0;
+  color : var(--color-text);
 }
 
 .hero-main-title{
   font-size: 64px;
+  color : var(--color-text);
 }
 
 .hero-main-description{
   font-size: 18px;
+  color : var(--color-text);
 }
 
 .hero-second-subheading {
   font-size: 32px;
   text-transform: uppercase;
+  color : var(--color-text);
 }
