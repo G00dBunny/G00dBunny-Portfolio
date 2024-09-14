@@ -12,6 +12,11 @@ export default class Controls {
     this.sizes = this.experience.sizes
     this.camera = this.experience.camera
     this.room = this.experience.world.room.actualRoom
+    this.room.children.forEach((child) => {
+      if (child.type === 'RectAreaLight') {
+        this.rectLight = child
+      }
+    })
     GSAP.registerPlugin(ScrollTrigger)
 
     this.setPath()
@@ -30,20 +35,72 @@ export default class Controls {
   }
 
   setPath() {
-    this.timeline = new GSAP.timeline()
-    this.timeline.to(this.room.position, {
-      x: () => {
-        return this.sizes.width * 0.0012
-      },
-      scrollTrigger: {
-        trigger: '.first-move',
-        markers: true,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 0.6,
-        invalidateOnRefresh: true
-      }
+    let mm = GSAP.matchMedia()
+
+    mm.add('(min-width: 969px)', () => {
+      /**
+       * First Section
+       */
+      this.firstTimeline = new GSAP.timeline({
+        scrollTrigger: {
+          trigger: '.first-move',
+          markers: true,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.6,
+          invalidateOnRefresh: true
+        }
+      })
+      this.firstTimeline.to(this.room.position, {
+        x: () => {
+          return this.sizes.width * 0.0012
+        }
+      })
+      /**
+       * Second Section
+       */
+      this.secondTimeline = new GSAP.timeline({
+        scrollTrigger: {
+          trigger: '.second-move',
+          markers: true,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.6,
+          invalidateOnRefresh: true
+        }
+      })
+        .to(
+          this.room.position,
+          {
+            x: () => {
+              return 1.5
+            },
+            z: () => {
+              return this.sizes.height * 0.002
+            }
+          },
+          'same'
+        )
+        .to(
+          this.room.scale,
+          {
+            x: 0.4,
+            y: 0.4,
+            z: 0.4
+          },
+          'same'
+        )
+        .to(
+          this.rectLight,
+          {
+            width: 0.5 * 4,
+            height: 1 * 4
+          },
+          'same'
+        )
     })
+
+    mm.add('(max-width: 969px)', () => {})
   }
 
   //   onWheel() {
