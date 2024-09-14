@@ -15,7 +15,7 @@ export default class Camera {
   }
 
   createPerspectiveCamera() {
-    this.perspectiveCamera = new THREE.PerspectiveCamera(35, this.sizes.aspect, 0.1, 1000)
+    this.perspectiveCamera = new THREE.PerspectiveCamera(50, this.sizes.aspect, 0.1, 1000)
     this.perspectiveCamera.position.set(29, 14, 12)
     this.scene.add(this.perspectiveCamera)
   }
@@ -26,7 +26,7 @@ export default class Camera {
       (this.sizes.aspect * this.sizes.frustrum) / 2,
       this.sizes.frustrum / 2,
       -this.sizes.frustrum / 2,
-      -10,
+      -20,
       20
     )
 

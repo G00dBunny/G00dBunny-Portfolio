@@ -39,6 +39,12 @@ export default class Controls {
 
     mm.add('(min-width: 969px)', () => {
       /**
+       * Resets
+       */
+      this.room.scale.set(0.11, 0.11, 0.11)
+      this.rectLight.width = 0.5
+      this.rectLight.height = 1
+      /**
        * First Section
        */
       this.firstTimeline = new GSAP.timeline({
@@ -98,9 +104,117 @@ export default class Controls {
           },
           'same'
         )
+      /**
+       * Third Section
+       */
+      this.thirdTimeline = new GSAP.timeline({
+        scrollTrigger: {
+          trigger: '.third-move',
+          markers: true,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.6,
+          invalidateOnRefresh: true
+        }
+      }).to(this.camera.orthographicCamera.position, {
+        y: -4.1,
+        x: -3
+      })
     })
 
-    mm.add('(max-width: 969px)', () => {})
+    mm.add('(max-width: 969px)', () => {
+      /**
+       * Resets
+       */
+      this.room.scale.set(0.07, 0.07, 0.07)
+      this.room.position.set(0, 0, 0)
+      this.rectLight.width = 0.6
+      this.rectLight.height = 0.6
+
+      /**
+       * First Section
+       */
+      this.firstTimeline = new GSAP.timeline({
+        scrollTrigger: {
+          trigger: '.first-move',
+          markers: true,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.6,
+          invalidateOnRefresh: true
+        }
+      })
+        .to(
+          this.room.scale,
+          {
+            x: 0.1,
+            y: 0.1,
+            z: 0.1
+          },
+          'same'
+        )
+        .to(
+          this.rectLight,
+          {
+            width: 0.5 * 2,
+            height: 1 * 0.8
+          },
+          'same'
+        )
+
+      /**
+       * Second Section
+       */
+      this.secondTimeline = new GSAP.timeline({
+        scrollTrigger: {
+          trigger: '.second-move',
+          markers: true,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.6,
+          invalidateOnRefresh: true
+        }
+      })
+        .to(
+          this.room.scale,
+          {
+            x: 0.25,
+            y: 0.25,
+            z: 0.25
+          },
+          'same2'
+        )
+        .to(
+          this.rectLight,
+          {
+            width: 0.5 * 5,
+            height: 1 * 2
+          },
+          'same2'
+        )
+        .to(
+          this.room.position,
+          {
+            x: 1.5
+          },
+          'same2'
+        )
+      /**
+       * Third section
+       */
+      this.thirdTimeline = new GSAP.timeline({
+        scrollTrigger: {
+          trigger: '.third-move',
+          markers: true,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.6,
+          invalidateOnRefresh: true
+        }
+      }).to(this.room.position, {
+        z: -4.5
+      })
+    })
   }
 
   //   onWheel() {
