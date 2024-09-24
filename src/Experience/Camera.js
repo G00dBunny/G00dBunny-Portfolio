@@ -30,7 +30,7 @@ export default class Camera {
       20
     )
 
-    this.orthographicCamera.position.set(0, 0.75, 0)
+    this.orthographicCamera.position.set(0, 0, 0)
     this.orthographicCamera.rotation.x = -Math.PI / 6
 
     console.log(this.orthographicCamera)
