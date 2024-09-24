@@ -18,6 +18,10 @@ export default class Controls {
         this.rectLight = child
       }
     })
+
+    this.circleFirst = this.experience.world.floor.circleFirst
+    this.circleSecond = this.experience.world.floor.circleSecond
+    this.circleThird = this.experience.world.floor.circleThird
     GSAP.registerPlugin(ScrollTrigger)
 
     this.setSmoothScroll()
@@ -323,6 +327,74 @@ export default class Controls {
           }
         })
       })
+
+      //Circle animations
+      /**
+       * First Section
+       */
+      this.firstTimeline = new GSAP.timeline({
+        scrollTrigger: {
+          trigger: '.first-move',
+          markers: true,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.6,
+          invalidateOnRefresh: true
+        }
+      }).to(this.circleFirst.scale, {
+        x: 3,
+        y: 3,
+        z: 3
+      })
+
+      /**
+       * Second Section
+       */
+      this.secondTimeline = new GSAP.timeline({
+        scrollTrigger: {
+          trigger: '.second-move',
+          markers: true,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.6,
+          invalidateOnRefresh: true
+        }
+      })
+        .to(
+          this.circleSecond.scale,
+          {
+            x: 3,
+            y: 3,
+            z: 3
+          },
+          'same'
+        )
+        .to(
+          this.room.position,
+          {
+            y: 0.7
+          },
+          'same'
+        )
+
+      /**
+       * Third Section
+       */
+      this.thirdTimeline = new GSAP.timeline({
+        scrollTrigger: {
+          trigger: '.third-move',
+          markers: true,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.6,
+          invalidateOnRefresh: true
+        }
+      }).to(this.circleThird.scale, {
+        x: 3,
+        y: 3,
+        z: 3
+      })
+
       // Mini platform animations
       this.secondPartTimeline = new GSAP.timeline({
         scrollTrigger: {
