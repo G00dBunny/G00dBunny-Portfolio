@@ -23,8 +23,10 @@ export default class Controls {
     this.circleSecond = this.experience.world.floor.circleSecond
     this.circleThird = this.experience.world.floor.circleThird
     GSAP.registerPlugin(ScrollTrigger)
+    document.querySelector('.page').style.overflow = 'visible'
 
     this.setSmoothScroll()
+
     this.setScrollTrigger()
 
     // this.progress = 0
@@ -44,7 +46,9 @@ export default class Controls {
     // https://github.com/ashthornton/asscroll
     const asscroll = new ASScroll({
       ease: 0.05,
-      disableRaf: true
+      disableRaf: true,
+      disableNativeScroll: true, // Ajoutez cette option pour désactiver le scroll natif
+      scrollbar: false
     })
 
     GSAP.ticker.add(asscroll.update)
@@ -103,7 +107,7 @@ export default class Controls {
       this.firstTimeline = new GSAP.timeline({
         scrollTrigger: {
           trigger: '.first-move',
-          markers: true,
+
           start: 'top top',
           end: 'bottom bottom',
           scrub: 0.6,
@@ -121,7 +125,7 @@ export default class Controls {
       this.secondTimeline = new GSAP.timeline({
         scrollTrigger: {
           trigger: '.second-move',
-          markers: true,
+
           start: 'top top',
           end: 'bottom bottom',
           scrub: 0.6,
@@ -163,7 +167,7 @@ export default class Controls {
       this.thirdTimeline = new GSAP.timeline({
         scrollTrigger: {
           trigger: '.third-move',
-          markers: true,
+
           start: 'top top',
           end: 'bottom bottom',
           scrub: 0.6,
@@ -190,7 +194,7 @@ export default class Controls {
       this.firstTimeline = new GSAP.timeline({
         scrollTrigger: {
           trigger: '.first-move',
-          markers: true,
+
           start: 'top top',
           end: 'bottom bottom',
           scrub: 0.6,
@@ -221,7 +225,7 @@ export default class Controls {
       this.secondTimeline = new GSAP.timeline({
         scrollTrigger: {
           trigger: '.second-move',
-          markers: true,
+
           start: 'top top',
           end: 'bottom bottom',
           scrub: 0.6,
@@ -258,7 +262,7 @@ export default class Controls {
       this.thirdTimeline = new GSAP.timeline({
         scrollTrigger: {
           trigger: '.third-move',
-          markers: true,
+
           start: 'top top',
           end: 'bottom bottom',
           scrub: 0.6,
@@ -335,7 +339,7 @@ export default class Controls {
       this.firstTimeline = new GSAP.timeline({
         scrollTrigger: {
           trigger: '.first-move',
-          markers: true,
+
           start: 'top top',
           end: 'bottom bottom',
           scrub: 0.6,
@@ -353,7 +357,7 @@ export default class Controls {
       this.secondTimeline = new GSAP.timeline({
         scrollTrigger: {
           trigger: '.second-move',
-          markers: true,
+
           start: 'top top',
           end: 'bottom bottom',
           scrub: 0.6,
@@ -383,7 +387,7 @@ export default class Controls {
       this.thirdTimeline = new GSAP.timeline({
         scrollTrigger: {
           trigger: '.third-move',
-          markers: true,
+
           start: 'top top',
           end: 'bottom bottom',
           scrub: 0.6,
@@ -399,7 +403,7 @@ export default class Controls {
       this.secondPartTimeline = new GSAP.timeline({
         scrollTrigger: {
           trigger: '.third-move',
-          markers: true,
+
           start: 'center center'
         }
       })

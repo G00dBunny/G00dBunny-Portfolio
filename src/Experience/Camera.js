@@ -33,20 +33,6 @@ export default class Camera {
     this.orthographicCamera.position.set(0, 0, 0)
     this.orthographicCamera.rotation.x = -Math.PI / 6
 
-    console.log(this.orthographicCamera)
-
-    this.helper = new THREE.CameraHelper(this.orthographicCamera)
-    this.scene.add(this.helper)
-
-    const axesHelper = new THREE.AxesHelper(10)
-    this.scene.add(axesHelper)
-
-    const size = 20
-    const divisions = 20
-
-    const gridHelper = new THREE.GridHelper(size, divisions)
-    this.scene.add(gridHelper)
-
     // this.orthographicCamera.position.y = 5.65
     // this.orthographicCamera.position.z = 10
     // this.orthographicCamera.rotation.x = -Math.PI / 6
