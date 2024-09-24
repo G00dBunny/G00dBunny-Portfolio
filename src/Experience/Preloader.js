@@ -46,9 +46,9 @@ export default class Preloader extends EventEmitter {
           .to(this.room.position, {
             x: -1,
             ease: 'power1,out',
-            duration: 0.7,
-            onComplet: resolve
+            duration: 0.7
           })
+          .eventCallback('onComplete', resolve) // Correct use of onComplete
       } else {
         this.timeline
           .to(this.roomChildren.cube.scale, {
@@ -61,37 +61,147 @@ export default class Preloader extends EventEmitter {
           .to(this.room.position, {
             z: -1,
             ease: 'power1,out',
-            duration: 0.7,
-            onComplet: resolve
+            duration: 0.7
           })
+          .eventCallback('onComplete', resolve) // Correct use of onComplete
       }
     })
   }
 
   secondIntro() {
-    this.secondTimeline = new GSAP.timeline()
+    return new Promise((resolve) => {
+      this.secondTimeline = new GSAP.timeline()
 
-    if (this.device === 'desktop') {
-      this.timeline.to(this.room.position, {
-        x: 0,
-        y: 0,
-        z: 0,
-        ease: 'power1,out',
-        duration: 0.7
-      })
-    } else {
-      this.secondTimeline.to(this.room.position, {
-        x: 0,
-        y: 0,
-        z: 0,
-        ease: 'power1,out',
-        duration: 0.7
-      })
-    }
+      if (this.device === 'desktop') {
+        this.timeline
+          .to(
+            this.room.position,
+            {
+              x: 0,
+              y: 0,
+              z: 0,
+              ease: 'power1,out'
+            },
+            'same'
+          )
+          .to(
+            this.roomChildren.cube.rotation,
+            {
+              y: 2 * Math.PI + Math.PI / 4
+            },
+            'same'
+          )
+          .to(
+            this.roomChildren.cube.scale,
+            {
+              x: 10,
+              y: 10,
+              z: 10
+            },
+            'same'
+          )
+          .to(
+            this.camera.orthographicCamera.position,
+            {
+              y: 0.75
+            },
+            'same'
+          )
+          .to(
+            this.roomChildren.cube.position,
+            {
+              x: 0.638711,
+              y: 8.5618,
+              z: 1.3243
+            },
+            'same'
+          )
+          .set(this.roomChildren.body.scale, {
+            x: 1,
+            y: 1,
+            z: 1
+          })
+          .to(this.roomChildren.cube.scale, {
+            x: 0,
+            y: 0,
+            z: 0
+          })
+          .to(this.roomChildren.aquarium.scale, {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: 'back.out(2,2)',
+            duration: 0.5
+          })
+          .to(this.roomChildren.clock.scale, {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: 'back.out(2,2)',
+            duration: 0.5
+          })
+          .to(this.roomChildren.shelves.scale, {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: 'back.out(2,2)',
+            duration: 0.5
+          })
+          .to(this.roomChildren.floor_items.scale, {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: 'back.out(2,2)',
+            duration: 0.5
+          })
+          .to(this.roomChildren.desks.scale, {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: 'back.out(2,2)',
+            duration: 0.5
+          })
+          .to(this.roomChildren.table_stuff.scale, {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: 'back.out(2,2)',
+            duration: 0.5
+          })
+          .to(this.roomChildren.computer.scale, {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: 'back.out(2,2)',
+            duration: 0.5
+          })
+          .to(this.roomChildren.chair.rotation, {
+            y: 4 * Math.PI + Math.PI / 4,
+
+            ease: 'power2.out',
+            duration: 1
+          })
+          .to(this.roomChildren.aquarium.scale, {
+            x: 1,
+            y: 1,
+            z: 1,
+            ease: 'back.out(2,2)',
+            duration: 0.5
+          })
+      } else {
+        this.secondTimeline.to(this.room.position, {
+          x: 0,
+          y: 0,
+          z: 0,
+          ease: 'power1,out',
+          duration: 0.7
+        })
+      }
+    })
   }
 
-  playSecondIntro() {
-    this.secondIntro()
+  async playSecondIntro() {
+    await this.secondIntro()
   }
 
   onScroll(e) {
