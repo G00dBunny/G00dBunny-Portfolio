@@ -8,6 +8,7 @@ import World from './World/World.js'
 import Ressources from './Utils/Ressources.js'
 import assets from './Utils/assets.js'
 import Preloader from './Preloader.js'
+import Controls from './World/Controls.js'
 
 export default class Experience {
   static instance
@@ -29,6 +30,9 @@ export default class Experience {
     this.world = new World()
     this.preloader = new Preloader()
 
+    this.preloader.on('enablecontrols', () => {
+      this.controls = new Controls()
+    })
     this.sizes.on('resize', () => {
       this.resize()
     })
@@ -44,6 +48,7 @@ export default class Experience {
   }
 
   update() {
+    this.preloader.update()
     if (this.world) {
       this.world.update()
     }

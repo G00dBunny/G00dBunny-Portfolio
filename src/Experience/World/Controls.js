@@ -22,10 +22,14 @@ export default class Controls {
     this.circleFirst = this.experience.world.floor.circleFirst
     this.circleSecond = this.experience.world.floor.circleSecond
     this.circleThird = this.experience.world.floor.circleThird
+
     GSAP.registerPlugin(ScrollTrigger)
+
     document.querySelector('.page').style.overflow = 'visible'
 
-    this.setSmoothScroll()
+    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      this.setSmoothScroll()
+    }
 
     this.setScrollTrigger()
 
@@ -45,10 +49,8 @@ export default class Controls {
   setupASScroll() {
     // https://github.com/ashthornton/asscroll
     const asscroll = new ASScroll({
-      ease: 0.05,
-      disableRaf: true,
-      disableNativeScroll: true, // Ajoutez cette option pour désactiver le scroll natif
-      scrollbar: false
+      ease: 0.1,
+      disableRaf: true
     })
 
     GSAP.ticker.add(asscroll.update)

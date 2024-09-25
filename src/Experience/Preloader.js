@@ -18,6 +18,7 @@ export default class Preloader extends EventEmitter {
     this.sizes.on('switchdevice', (device) => {
       this.device = device
     })
+    console.log(this.device)
 
     this.world.on('worldReady', () => {
       this.setAssets()
@@ -32,7 +33,11 @@ export default class Preloader extends EventEmitter {
 
   firstIntro() {
     return new Promise((resolve) => {
+      console.log(resolve)
+
       this.timeline = new GSAP.timeline()
+
+      this.timeline.set(document.body, { overflow: 'hidden' })
 
       if (this.device === 'desktop') {
         this.timeline
@@ -64,6 +69,7 @@ export default class Preloader extends EventEmitter {
             duration: 0.7,
             onComplete: resolve
           })
+          .set(document.body, { overflow: 'auto' })
       }
     })
   }
@@ -71,6 +77,7 @@ export default class Preloader extends EventEmitter {
   secondIntro() {
     return new Promise((resolve) => {
       this.secondTimeline = new GSAP.timeline()
+      this.secondTimeline.set(document.body, { overflow: 'hidden' })
 
       this.secondTimeline
         .to(
@@ -174,7 +181,11 @@ export default class Preloader extends EventEmitter {
           ease: 'back.out(2,2)',
           duration: 0.5
         })
-
+        .set(this.roomChildren.mini_floor.scale, {
+          x: 1,
+          y: 1,
+          z: 1
+        })
         .to(this.roomChildren.aquarium.scale, {
           x: 1,
           y: 1,
@@ -215,10 +226,16 @@ export default class Preloader extends EventEmitter {
           },
           'chair'
         )
+        .set(document.body, { overflow: 'auto' })
     })
   }
 
   onScroll(e) {
+    console.log('Scroll event detected:', e)
+    console.log('DeltaY:', e.deltaY)
+
+    // Log current scroll position
+    console.log('Current scroll position:', window.scrollY)
     if (e.deltaY > 0) {
       this.removeEventListeners()
       this.playSecondIntro()
@@ -247,6 +264,7 @@ export default class Preloader extends EventEmitter {
 
   async playIntro() {
     await this.firstIntro()
+    this.moveFlag = true
 
     this.scrollOnceEvent = this.onScroll.bind(this)
     this.touchStart = this.onTouch.bind(this)
@@ -257,8 +275,24 @@ export default class Preloader extends EventEmitter {
   }
   async playSecondIntro() {
     console.log('Starting second intro')
+    this.moveFlag = false
+
     await this.secondIntro()
     console.log('Second intro finished')
     this.emit('enablecontrols')
+  }
+
+  move() {
+    if (this.device === 'desktop') {
+      this.room.position.set(-1, 0, 0)
+    } else {
+      this.room.position.set(0, 0, -1)
+    }
+  }
+
+  update() {
+    if (this.moveFlag) {
+      this.move()
+    }
   }
 }
